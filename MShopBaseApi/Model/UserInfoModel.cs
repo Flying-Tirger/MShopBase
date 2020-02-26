@@ -5,7 +5,23 @@ using System.Threading.Tasks;
 
 namespace MShopBaseApi.Model
 {
+    /// <summary>
+    /// 用户表
+    /// </summary>
     public class UserInfoModel
     {
+        /// <summary>
+        /// 用户编号
+        /// </summary>
+        public int Uid { get; set; }
+        /// <summary>
+        /// 用户昵称
+        /// </summary>
+        public string Uname { get; set; }
+        /// <summary>
+        /// 用户性别
+        /// </summary>
+        public bool Usex { get; set; }
+        
     }
 }

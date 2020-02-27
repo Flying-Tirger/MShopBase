@@ -10,6 +10,9 @@ namespace MShopBaseApi.Model
     /// </summary>
     public class GoodsTypeModel
     {
+        /// <summary>
+        /// 主键
+        /// </summary>
         public int GoodsTypeId { get; set; }
         /// <summary>
         /// 类型名称

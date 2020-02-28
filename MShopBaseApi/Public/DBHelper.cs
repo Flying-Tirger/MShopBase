@@ -11,7 +11,7 @@ namespace MShopBaseApi
     public class DBHelper
     {
         //连接数据库
-        static SqlConnection conn = new SqlConnection("Data Source=DESKTOP-U4HT62P;Initial Catalog=richangwenjian;Integrated Security=True");
+        static SqlConnection conn = new SqlConnection("server=111.229.85.21;user id=root;pwd=root;database=mshopbase");
         static SqlDataReader sdr;
         /// <summary>
         /// 获取数据流  查询、显示、绑定下拉

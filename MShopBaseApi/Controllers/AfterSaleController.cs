@@ -11,36 +11,79 @@ namespace MShopBaseApi.Controllers
     [ApiController]
     public class AfterSaleController : ControllerBase
     {
-        // GET: api/AfterSale
-        [HttpGet]
-        public IEnumerable<string> Get()
+        public List<AfterOrderModel> Get(int userId,int id = 0)
         {
-            return new string[] { "value1", "value2" };
+            string sql = $"select g.GImg,g.GName,o.OrderNum,g.GPrice,o.OId,o.OrderBH,o.OrderTime,a.* from aftersale as a join orderinfo as o on a.AsId=o.OId join  goods  as g on g.Gid?=o.GoodsId where o.UserId ={ userId}";
+            if (id != 0)
+            {
+                sql += $" and AsState={id}";
+            }
+            List<AfterOrderModel> list = DBHelper.GetToList<AfterOrderModel>(sql);
+            return list;
         }
+    }
+    public class AfterOrderModel
+    {
+        /// <summary>
+        /// 商品编号
+        /// </summary>
+        public int Gid { get; set; }
+        /// <summary>
+        /// 商品名称
+        /// </summary>
+        public int GName { get; set; }
+        /// <summary>
+        /// 订单数量
+        /// </summary>
+        public int OrderNum { get; set; }
+        /// <summary>
+        /// 商品价格
+        /// </summary>
+        public int GPrice { get; set; }
+        /// <summary>
+        /// 订单表主键
+        /// </summary>
+        public int Old { get; set; }
+        /// <summary>
+        /// 订单编号
+        /// </summary>
+        public int OrderBH { get; set; }
+        /// <summary>
+        /// 下单时间
+        /// </summary>
+        public int OrderTime { get; set; }
+        /// <summary>
+        /// 编号
+        /// </summary>
+        public int Asid { get; set; }
+        /// <summary>
+        /// 售后状态
+        /// </summary>
+        public int AsState { get; set; }
+        /// <summary>
+        /// 申请说明
+        /// </summary>
+        public string AsRemark { get; set; }
+        /// <summary>
+        /// 链接用户表
+        /// </summary>
+        public int UserId { get; set; }
+        /// <summary>
+        /// 链接订单表  外键
+        /// </summary>
+        public int OrderId { get; set; }
+        /// <summary>
+        /// 申请时间
+        /// </summary>
+        public DateTime ApplyTime { get; set; }
+        /// <summary>
+        /// 联系方式
+        /// </summary>
+        public string AsPhone { get; set; }
+        /// <summary>
+        /// 图片凭证
+        /// </summary>
+        public string AsImg { get; set; }
 
-        // GET: api/AfterSale/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/AfterSale
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT: api/AfterSale/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

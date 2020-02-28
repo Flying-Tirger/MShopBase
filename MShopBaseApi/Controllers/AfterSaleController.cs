@@ -11,9 +11,9 @@ namespace MShopBaseApi.Controllers
     [ApiController]
     public class AfterSaleController : ControllerBase
     {
-        public List<AfterOrderModel> Get(int userId,int id = 0)
+        public List<AfterOrderModel> Get(int userId, int id = 0)
         {
-            string sql = $"select g.GImg,g.GName,o.OrderNum,g.GPrice,o.OId,o.OrderBH,o.OrderTime,a.* from aftersale as a join orderinfo as o on a.AsId=o.OId join  goods  as g on g.Gid?=o.GoodsId where o.UserId ={ userId}";
+            string sql = $"select g.GImg,g.GName,o.OrderNum,g.GPrice,o.OId,o.OrderBH,o.OrderTime,a.* from aftersale as a join orderinfo as o on a.AsId=o.OId join  goods  as g on g.`Gid `=o.GoodsId where o.UserId ={ userId}";
             if (id != 0)
             {
                 sql += $" and AsState={id}";
@@ -21,7 +21,12 @@ namespace MShopBaseApi.Controllers
             List<AfterOrderModel> list = DBHelper.GetToList<AfterOrderModel>(sql);
             return list;
         }
+
+
     }
+    /// <summary>
+    ///售后显示表
+    /// </summary>
     public class AfterOrderModel
     {
         /// <summary>
@@ -31,7 +36,7 @@ namespace MShopBaseApi.Controllers
         /// <summary>
         /// 商品名称
         /// </summary>
-        public int GName { get; set; }
+        public string GName { get; set; }
         /// <summary>
         /// 订单数量
         /// </summary>
@@ -39,7 +44,7 @@ namespace MShopBaseApi.Controllers
         /// <summary>
         /// 商品价格
         /// </summary>
-        public int GPrice { get; set; }
+        public double GPrice { get; set; }
         /// <summary>
         /// 订单表主键
         /// </summary>
@@ -47,11 +52,11 @@ namespace MShopBaseApi.Controllers
         /// <summary>
         /// 订单编号
         /// </summary>
-        public int OrderBH { get; set; }
+        public string OrderBH { get; set; }
         /// <summary>
         /// 下单时间
         /// </summary>
-        public int OrderTime { get; set; }
+        public DateTime OrderTime { get; set; }
         /// <summary>
         /// 编号
         /// </summary>

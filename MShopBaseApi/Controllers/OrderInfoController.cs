@@ -38,7 +38,7 @@ namespace MShopBaseApi.Controllers
         {
             string sql = $"insert into orderinfo VALUES(DEFAULT(orderinfo.OId),'{model.OrderBH}',{model.GoodsId},{model.OrderNum},'{model.OrderTime}',{model.OrderState},{model.ExpressId},{model.ProfileeId},{model.UserId})";
             int n = DBHelper.ExecuteNonQuery(sql);
-            return n;
+            return n; 
         }
 
 }

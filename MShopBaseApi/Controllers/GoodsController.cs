@@ -20,7 +20,7 @@ namespace MShopBaseApi.Controllers
             }
             if (Goname!=null)
             {
-                sql += $" and  LOCATE('{Goname}',goods.GName ) ";
+                sql += $" and  LOCATE('{Goname}',goods.GName )";
             }
             List<GoodsGoodtype> good = DBHelper.GetToList<GoodsGoodtype>(sql);
             return good;

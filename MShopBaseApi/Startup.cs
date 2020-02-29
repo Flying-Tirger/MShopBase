@@ -44,7 +44,8 @@ namespace MShopBaseApi
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+               endpoints.MapControllers();
+              
             });
         }
     }

@@ -39,7 +39,7 @@ namespace MShopBaseApi.Controllers
             string sql = $"insert into express VALUES(DEFAULT(express.ExpressId),'{model.ExpBH}','{model.ExpCompany}','{model.ExpInfo}')";
 
             int n = DBHelper.ExecuteNonQuery(sql);
-            return n;
+            return n; 
         }
     }
 }

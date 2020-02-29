@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;//引用数据库客户端
+//using System.Data.SqlClient;//引用数据库客户端
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Data;
+using MySql.Data.MySqlClient;
 namespace MShopBaseApi
 {
     public class DBHelper
     {
         //连接数据库
-        static SqlConnection conn = new SqlConnection("server=111.229.85.21;user id=root;pwd=root;database=mshopbase");
-        static SqlDataReader sdr;
+        static MySqlConnection conn = new MySqlConnection("server=111.229.85.21;user id=root;pwd=root;database=mshopbase");
+        static MySqlDataReader sdr;
         /// <summary>
         /// 获取数据流  查询、显示、绑定下拉
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        private static SqlDataReader GetDataReader(string sql)
+        private static MySqlDataReader GetDataReader(string sql)
         {
             try
             {
@@ -29,7 +30,7 @@ namespace MShopBaseApi
                     conn.Open();
                 }
                 //命令对象
-                SqlCommand cmd = new SqlCommand(sql, conn);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
                  sdr = cmd.ExecuteReader();
                 return sdr;
             }
@@ -61,7 +62,7 @@ namespace MShopBaseApi
                 }
 
                 //命令对象
-                SqlCommand cmd = new SqlCommand(sql, conn);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
                 int n = cmd.ExecuteNonQuery();
                 if (conn.State == ConnectionState.Open)
                 {
@@ -81,7 +82,7 @@ namespace MShopBaseApi
         /// <typeparam name="T"></typeparam>
         /// <param name="sdr"></param>
         /// <returns></returns>
-        private static List<T> DataReaderToList<T>(SqlDataReader sdr) {
+        private static List<T> DataReaderToList<T>(MySqlDataReader sdr) {
             Type t = typeof(T);//获取类型
             //获取所有属性
             PropertyInfo[] p = t.GetProperties();
@@ -127,7 +128,7 @@ namespace MShopBaseApi
         /// <returns></returns>
         public static List<T> GetToList<T>(string sql) {
             //获取流数据
-            SqlDataReader sdr = GetDataReader(sql);
+            MySqlDataReader sdr = GetDataReader(sql);
             List<T> list = DataReaderToList<T>(sdr);
             if (!sdr.IsClosed)//数据流关闭
             {
@@ -152,7 +153,7 @@ namespace MShopBaseApi
                 }
 
                 //命令对象
-                SqlCommand cmd = new SqlCommand(sql, conn);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
                 object n = cmd.ExecuteScalar();
                 if (conn.State == ConnectionState.Open)
                 {

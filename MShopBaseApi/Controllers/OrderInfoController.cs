@@ -30,7 +30,7 @@ namespace MShopBaseApi.Controllers
         }   
         /// <summary>
         /// 添加
-        /// </summary>
+        /// </summary> 
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]

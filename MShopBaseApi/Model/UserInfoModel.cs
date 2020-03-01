@@ -22,6 +22,11 @@ namespace MShopBaseApi.Model
         /// 用户性别
         /// </summary>
         public bool Usex { get; set; }
-        
+        /// <summary>
+        /// 头像
+        /// </summary>
+
+        public string UImg { get; set; }
+
     }
 }

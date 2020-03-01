@@ -7,10 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MShopBaseApi.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    /// <summary>
+    /// 商品表
+    /// </summary>
+    [Route("api/[controller]")]
     [ApiController]
     public class GoodsController : ControllerBase
     {
+        /// <summary>
+        /// 商品显示
+        /// </summary>
+        /// <param name="Lid"></param>
+        /// <param name="Goname"></param>
+        /// <returns></returns>
         public List<GoodsGoodtype> Get(int Lid=0,string Goname=null)
         {
             string sql = $"SELECT * FROM goods join goodstype on goods.GTypeId=goodstype.GoodsTypeId where 1=1 ";
@@ -20,7 +29,8 @@ namespace MShopBaseApi.Controllers
             }
             if (Goname!=null)
             {
-                sql += $" and  LOCATE('{Goname}',goods.GName )";
+                Goname = '"' + Goname + '"';
+                sql += $" and  LOCATE({Goname},goods.GName)";
             }
             List<GoodsGoodtype> good = DBHelper.GetToList<GoodsGoodtype>(sql);
             return good;
@@ -39,7 +49,7 @@ namespace MShopBaseApi.Controllers
             /// <summary>
             /// 商品价格
             /// </summary>
-            public decimal GPrice { get; set; }
+            public float GPrice { get; set; }
             /// <summary>
             /// 商品图片
             /// </summary>

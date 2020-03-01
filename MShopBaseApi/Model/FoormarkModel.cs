@@ -22,6 +22,10 @@ namespace MShopBaseApi.Model
         /// 连接商品表
         /// </summary>
         public int GoodsId { get; set; }
+        /// <summary>
+        /// 连接用户表
+        /// </summary>
+        public int userInfoId { get; set; }
 
     }
 }

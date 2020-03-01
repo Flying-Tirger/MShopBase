@@ -8,6 +8,9 @@ using MShopBaseApi.Model;
 
 namespace MShopBaseApi.Controllers
 {
+    /// <summary>
+    /// 物流表
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ExpressController : ControllerBase

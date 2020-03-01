@@ -15,7 +15,7 @@ namespace MShopBaseApi.Controllers
         public List<GoodsTypeModel> Get()
         {
             string sql = $"SELECT * FROM GoodsType  ";    
-            List<GoodsGoodtype> good = DBHelper.GetToList<GoodsGoodtype>(sql);
+            List<GoodsTypeModel> good = DBHelper.GetToList<GoodsTypeModel>(sql);
             return good;
         }
         //public int Put(int id,int gai)

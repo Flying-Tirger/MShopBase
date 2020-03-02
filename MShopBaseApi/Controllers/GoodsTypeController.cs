@@ -18,11 +18,6 @@ namespace MShopBaseApi.Controllers
             List<GoodsTypeModel> good = DBHelper.GetToList<GoodsTypeModel>(sql);
             return good;
         }
-        //public int Put(int id,int gai)
-        //{
-        //    string sql = $"update goodstype set goodstype.GTState={gai} where goodstype.GoodsTypeId={id}";
-        //    int n = DBHelper.ExecuteNonQuery(sql);
-        //    return n;
-        //}
+
     }
 }

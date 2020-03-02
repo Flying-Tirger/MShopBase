@@ -22,5 +22,17 @@ namespace MShopBaseApi.Controllers
             string sql = $"insert into userinfo('Uname','usex','uimg') values('{m.Uname}','{m.Usex}','{m.UImg}')";
             return DBHelper.ExecuteNonQuery(sql);
         }
+        /// <summary>
+        /// 显示
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+
+        public List<UserInfoModel> Get(int id)
+        {
+            string sql = $"select * from userinfo where Uid ={id}";
+            return DBHelper.GetToList<UserInfoModel>(sql);
+        }
     }
 }

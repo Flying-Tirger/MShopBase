@@ -44,6 +44,17 @@ namespace MShopBaseApi.Controllers
             int n = DBHelper.ExecuteNonQuery(sql);
             return n; 
         }
-
-}
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public int DelOrder(int id)
+        {
+            string sql = $"delete from orderinfo where OId={id}";
+            int n = DBHelper.ExecuteNonQuery(sql);
+            return n;
+        }
+    }
 }

@@ -44,8 +44,6 @@ namespace MShopBaseApi.Controllers
         [HttpPost]
         public int PostPf(ProfileeModel list)
         {
-            //string json = JsonConvert.SerializeObject(value);
-            //ProfileeModel list= JsonConvert.DeserializeObject<ProfileeModel>(json);
             string sql = $"insert into Profilee(PfName,pfAddres,PfPhone,PfState,UserId) values('{list.PfName}','{list.PfAddres}','{list.PfPhone}',{list.PfState},'{list.UserId}')";
             int n = DBHelper.ExecuteNonQuery(sql);
             return n;

@@ -26,5 +26,19 @@ namespace MShopBaseApi.Controllers
             int n = DBHelper.ExecuteNonQuery(sql);
             return n;
         }
+        [HttpGet]
+        public List<FoormarkModel> Get(int id)
+        {
+            string sql = $"select * from foormark where FId={id}";
+            return DBHelper.GetToList<FoormarkModel>(sql);
+        }
+
+        [HttpDelete]
+
+        public int Delete(string id)
+        {
+            string sql = $"delete from foormark where FId in ({id})";
+            return DBHelper.ExecuteNonQuery(sql);
+        }
     }
 }

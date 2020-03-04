@@ -19,8 +19,21 @@ namespace MShopBaseApi.Controllers
         [HttpPost]
         public int Post(UserInfoModel m)
         {
-            string sql = $"insert into userinfo('Uname','usex','uimg') values('{m.Uname}','{m.Usex}','{m.UImg}')";
+          
+            string sql = $"insert into userinfo(Uname,usex,uimg) values('{m.Uname}','{m.Usex}','{m.UImg}')";
             return DBHelper.ExecuteNonQuery(sql);
+        }
+        /// <summary>
+        /// 显示
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+
+        public int Get(string Uname)
+        {
+            string sql = $"select count(*) from userinfo where Uname ={Uname}";
+            return Convert.ToInt32(DBHelper.ExecuteScalar(sql));
         }
     }
 }

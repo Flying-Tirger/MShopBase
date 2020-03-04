@@ -12,12 +12,16 @@ namespace MShopBaseApi.Controllers
     [ApiController]
     public class GoodsTypeController : ControllerBase
     {
-        public List<GoodsTypeModel> Get()
+        public List<GoodsTypeModel> Getlb(int id=0)
         {
-            string sql = $"SELECT * FROM GoodsType  ";    
+            string sql = $"SELECT a.GoodsTypeId,a.GoodTypeName,b.GoodsTypeId,b.GoodTypeName as Ername FROM goodstype a LEFT JOIN goodstype b ON b.GoodsTypeId = a.GoodsTypePid where 1=1 ";
+            if (id!=0)
+            {
+                sql += $" and  b.GoodsTypeId={id} ";
+            }
+            
             List<GoodsTypeModel> good = DBHelper.GetToList<GoodsTypeModel>(sql);
             return good;
         }
-
     }
 }

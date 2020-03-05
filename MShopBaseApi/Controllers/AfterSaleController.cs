@@ -67,7 +67,7 @@ namespace MShopBaseApi.Controllers
         /// <summary>
         /// 商品编号
         /// </summary>
-        public int Gid { get; set; }
+        public string GImg { get; set; }
         /// <summary>
         /// 商品名称
         /// </summary>

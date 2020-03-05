@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using MShopBaseApi.Model;
 namespace MShopBaseApi.Controllers
 {
+    /// <summary>
+    /// 售后表
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class AfterSaleController : ControllerBase
     {
-        public int MyProperty { get; set; }
+
         [HttpGet]
         /// <summary>
         /// 显示，单项查看售后信息
@@ -42,7 +45,7 @@ namespace MShopBaseApi.Controllers
         /// <returns></returns>
         public int Post(AfterSaleModel after = null)
         {
-            string sql = $"INSERT into aftersale(AsState,AsRemark,UserId,OrderId,ApplyTime,AsPhone,AsImg) VALUES({after.AsState}, '{ after.AsRemark}  ', {after.UserId}, {after.OrderId}, NOW(), '{after.AsPhone}', '{after.AsImg}')";
+            string sql = $"insert into aftersale(AsState,AsRemark,UserId,OrderId,ApplyTime,AsPhone,AsImg) vlaues({after.AsState}, '{ after.AsRemark}  ', {after.UserId}, {after.OrderId}, NOW(), '{after.AsPhone}', '{after.AsImg}')";
             int n = DBHelper.ExecuteNonQuery(sql);
             return n;
         }

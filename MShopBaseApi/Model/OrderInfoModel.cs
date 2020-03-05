@@ -21,11 +21,11 @@ namespace MShopBaseApi.Model
         /// <summary>
         /// 连接商品表
         /// </summary>
-        public int GoodSId { get; set; }
+        public int GoodsId { get; set; }
         /// <summary>
         /// 数量
         /// </summary>
-        public int GoodNum { get; set; }
+        public int OrderNum { get; set; }
         /// <summary>
         /// 下单时间
         /// </summary>

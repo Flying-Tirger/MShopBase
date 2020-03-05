@@ -22,5 +22,14 @@ namespace MShopBaseApi.Model
         /// 是否启用
         /// </summary>
         public bool GTState { get; set; }
+        /// <summary>
+        /// 二级类别
+        /// </summary>
+        public bool GoodsTypePid { get; set; }
+        /// <summary>
+        /// 类别图片
+        /// </summary>
+        public string GoodTypeimg { get; set; }
+
     }
 }

@@ -65,7 +65,7 @@ namespace MShopBaseApi.Controllers
     public class AfterOrderModel
     {
         /// <summary>
-        /// 商品编号
+        /// 商品图片
         /// </summary>
         public string GImg { get; set; }
         /// <summary>

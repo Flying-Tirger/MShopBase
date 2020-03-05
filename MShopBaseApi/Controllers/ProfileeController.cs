@@ -18,29 +18,21 @@ namespace MShopBaseApi.Controllers
         /// <param name="pid">反填</param>
         /// <returns></returns>
         [HttpGet]
-        public List<ProfileeModel> GetPf(int id = 0)
+        public List<ProfileeModel> GetPf(int id = -1, int pid = -1)
         {
+            string sql = string.Format("select PfId,PfName,PfPhone,PfState,UserId  from profilee  join userinfo  on profilee.UserId = userinfo.UId where 1 = 1 ");
             //判断数据
-            if (id != 0)
+            if (id != -1)
             {
-                string sql = $@"select PfId,PfName,PfPhone,PfState,UserId  from 
-(select PfId,PfName,PfPhone,PfState,UserId 
-from profilee join userinfo on profilee.UserId=userinfo.UId
-where  profilee.UserId=1)temp";
-                List<ProfileeModel> list = DBHelper.GetToList<ProfileeModel>(sql);
-                return list;
+                sql += string.Format(" and  UserId = '{0}' ", id);
             }
-            else
+            if (pid != -1)
             {
                 //反填
-                string sql = $@"select PfId,PfName,PfPhone,PfState,UserId  from 
-(select PfId,PfName,PfPhone,PfState,UserId 
-from profilee join userinfo on profilee.UserId=userinfo.UId
-where  profilee.UserId=1)temp where PfId='{id}'";
-                List<ProfileeModel> list = DBHelper.GetToList<ProfileeModel>(sql);
-                return list;
-
+                sql += string.Format("  and   PfId='{0}'", pid);
             }
+            List<ProfileeModel> list = DBHelper.GetToList<ProfileeModel>(sql);
+            return list;
         }
 
         /// <summary>
@@ -52,8 +44,6 @@ where  profilee.UserId=1)temp where PfId='{id}'";
         [HttpPost]
         public int PostPf(ProfileeModel list)
         {
-            //string json = JsonConvert.SerializeObject(value);
-            //ProfileeModel list= JsonConvert.DeserializeObject<ProfileeModel>(json);
             string sql = $"insert into Profilee(PfName,pfAddres,PfPhone,PfState,UserId) values('{list.PfName}','{list.PfAddres}','{list.PfPhone}',{list.PfState},'{list.UserId}')";
             int n = DBHelper.ExecuteNonQuery(sql);
             return n;

@@ -53,7 +53,7 @@ namespace MShopBaseApi.Controllers
         [HttpPut]
         public int PutPf(ProfileeModel list)
         {
-            string sql = $@"update Profilee set PfName='{list.PfName}',pfAddres='{list.PfAddres}',PfPhone='{list.PfPhone}',PfState ='{list.PfState}' where UserId='{list.UserId}' ";
+            string sql = $"update Profilee set PfName='{list.PfName}',pfAddres='{list.PfAddres}',PfPhone='{list.PfPhone}',PfState='{list.PfState}' where UserId='{list.UserId}'";
             int n = DBHelper.ExecuteNonQuery(sql);
             return n;
 

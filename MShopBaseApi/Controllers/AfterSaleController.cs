@@ -98,7 +98,7 @@ namespace MShopBaseApi.Controllers
         /// <summary>
         /// 编号
         /// </summary>
-        public int Asid { get; set; }
+        public int AsId { get; set; }
         /// <summary>
         /// 售后状态
         /// </summary>

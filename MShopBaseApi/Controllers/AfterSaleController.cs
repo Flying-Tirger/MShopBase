@@ -25,7 +25,7 @@ namespace MShopBaseApi.Controllers
         /// <returns></returns>
         public List<AfterOrderModel> Get(int userId,int Orderid=0, int state = 0)
         {
-            string sql = $"select g.GImg,g.GName,o.OrderNum,g.GPrice,o.OId,o.OrderBH,o.OrderTime,a.* from aftersale as a join orderinfo as o on a.AsId=o.OId join  goods  as g on g.`Gid `=o.GoodsId where o.UserId ={ userId}";
+            string sql = $"select g.GImg1,g.GName,o.OrderNum,g.GPrice,o.OId,o.OrderBH,o.OrderTime,a.* from aftersale as a join orderinfo as o on a.AsId=o.OId join  goods  as g on g.`Gid `=o.GoodsId where o.UserId ={userId}";
             if (state != 0)
             {
                 sql += $" and AsState={state}";
@@ -70,7 +70,7 @@ namespace MShopBaseApi.Controllers
         /// <summary>
         /// 商品图片
         /// </summary>
-        public string GImg { get; set; }
+        public string GImg1 { get; set; }
         /// <summary>
         /// 商品名称
         /// </summary>

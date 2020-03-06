@@ -49,11 +49,11 @@ namespace MShopBaseApi.Controllers
             /// <summary>
             /// 商品价格
             /// </summary>
-            public float GPrice { get; set; }
+            public decimal GPrice { get; set; }
             /// <summary>
-            /// 商品图片
+            /// 商品图片1
             /// </summary>
-            public string GImg { get; set; }
+            public string GImg1 { get; set; }
             /// <summary>
             /// 商品评分
             /// </summary>
@@ -67,11 +67,28 @@ namespace MShopBaseApi.Controllers
             /// </summary>
             public int GTypeId { get; set; }
             /// <summary>
-            /// 类型名称
+            /// 商品图片2
             /// </summary>
-            public string GoodTypeName { get; set; }
+            public string GImg2 { get; set; }
+            /// <summary>
+            /// 商品图片3
+            /// </summary>
+            public string GImg3 { get; set; }
+            /// <summary>
+            /// 商品运费
+            /// </summary>
+            public decimal GYunfei { get; set; }
+            /// <summary>
+            /// 商品库存
+            /// </summary>
+            public int GKucun { get; set; }
+            /// <summary>
+            /// 商品简介
+            /// </summary>
+            public string GSxiang { get; set; }
+
         }
 
-      
+
     }
 }

@@ -82,7 +82,7 @@ namespace MShopBaseApi.Controllers
         /// <summary>
         /// 商品价格
         /// </summary>
-        public double GPrice { get; set; }
+        public decimal GPrice { get; set; }
         /// <summary>
         /// 订单表主键
         /// </summary>

@@ -18,7 +18,7 @@ namespace MShopBaseApi.Controllers
         /// <param name="OrderSid"></param>
         /// <returns></returns>
         [HttpGet]
-        public List<OrderInfoModel> GetOrder(int OrderSid=-1,int OId = -1)
+        public List<OrderInfoS> GetOrder(int OrderSid=-1,int OId = -1)
         {
             string sql = $"select o.OrderState,o.OrderBH,o.OrderNum,o.OrderTime,g.GPrice,g.GName,p.pfAddres,p.PfName,p.PfPhone,e.ExpCompany,e.ExpInfo from orderinfo as o join goods as g on o.GoodsId=g.`Gid `JOIN express as e ON o.ExpressId =e.ExpressId JOIN profilee p ON o.ProfileeId = p.PfId JOIN userinfo as u ON o.UserId = u.UId WHERE 1=1";
             if (OrderSid != -1)
@@ -29,7 +29,7 @@ namespace MShopBaseApi.Controllers
             {
                 sql += $" and OId = {OId}";
             }
-            List<OrderInfoModel> list = DBHelper.GetToList<OrderInfoModel>(sql);
+            List<OrderInfoS> list = DBHelper.GetToList<OrderInfoS>(sql);
             return list;
         }   
         /// <summary>
@@ -46,4 +46,56 @@ namespace MShopBaseApi.Controllers
         }
 
 }
+
+    public class OrderInfoS
+    {
+        /// <summary>
+        /// 主键
+        /// </summary>
+        public int OId { get; set; }
+        /// <summary>
+        /// 订单编号
+        /// </summary>
+        public string OrderBH { get; set; }
+        /// <summary>
+        /// 数量
+        /// </summary>
+        public int OrderNum { get; set; }
+        /// <summary>
+        /// 下单时间
+        /// </summary>
+        public DateTime OrderTime { get; set; }
+        /// <summary>
+        /// 支付状态
+        /// </summary>
+        public int OrderState { get; set; }
+        /// <summary>
+        /// 商品名称
+        /// </summary>
+        public string GName { get; set; }
+        /// <summary>
+        /// 商品价格
+        /// </summary>
+        public decimal GPrice { get; set; }
+        /// <summary>
+        /// 联系人名称
+        /// </summary>
+        public string PfName { get; set; }
+        /// <summary>
+        ///全面详细地址
+        /// </summary>
+        public string PfAddres { get; set; }
+        /// <summary>
+        /// 手机号码
+        /// </summary>
+        public string PfPhone { get; set; }
+        /// <summary>
+        /// 公司名称
+        /// </summary>
+        public string ExpCompany { get; set; }
+        /// <summary>
+        /// 物流信息
+        /// </summary>
+        public string ExpInfo { get; set; }
+    }
 }

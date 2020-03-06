@@ -29,7 +29,7 @@ namespace MShopBaseApi.Controllers
         [HttpGet]
         public List<FoormarkModel> Get(int id)
         {
-            string sql = $"select * from foormark where FId={id}";
+            string sql = $"select FId,GImg,EDate,GoodsId,userInfoId from foormark join goods on foormark.GoodsId = goods.`Gid ` join userinfo on userinfo.UId = foormark.userInfoId where userInfoId = {id}";
             return DBHelper.GetToList<FoormarkModel>(sql);
         }
 
@@ -40,5 +40,31 @@ namespace MShopBaseApi.Controllers
             string sql = $"delete from foormark where FId in ({id})";
             return DBHelper.ExecuteNonQuery(sql);
         }
+    }
+
+    public class FoortGoods
+    {
+        /// <summary>
+        /// 足迹表id
+        /// </summary>
+        public int FId { get; set; }
+        /// <summary>
+        /// 足迹日期
+        /// </summary>
+        public DateTime EDate { get; set; }
+        /// <summary>
+        /// 连接商品表
+        /// </summary>
+        public int GoodsId { get; set; }
+        /// <summary>
+        /// 连接用户表
+        /// </summary>
+        public int userInfoId { get; set; }
+        /// <summary>
+        /// 商品图片
+        /// </summary>
+
+        public string GImg { get; set; }
+
     }
 }

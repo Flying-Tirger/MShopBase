@@ -44,8 +44,6 @@ namespace MShopBaseApi.Controllers
         [HttpPost]
         public int PostPf(ProfileeModel list)
         {
-            //string json = JsonConvert.SerializeObject(value);
-            //ProfileeModel list= JsonConvert.DeserializeObject<ProfileeModel>(json);
             string sql = $"insert into Profilee(PfName,pfAddres,PfPhone,PfState,UserId) values('{list.PfName}','{list.PfAddres}','{list.PfPhone}',{list.PfState},'{list.UserId}')";
             int n = DBHelper.ExecuteNonQuery(sql);
             return n;
@@ -55,7 +53,7 @@ namespace MShopBaseApi.Controllers
         [HttpPut]
         public int PutPf(ProfileeModel list)
         {
-            string sql = $@"update Profilee set PfName='{list.PfName}',pfAddres='{list.PfAddres}',PfPhone='{list.PfPhone}',PfState ='{list.PfState}' where UserId='{list.UserId}' ";
+            string sql = $"update Profilee set PfName='{list.PfName}',pfAddres='{list.PfAddres}',PfPhone='{list.PfPhone}',PfState='{list.PfState}' where UserId='{list.UserId}'";
             int n = DBHelper.ExecuteNonQuery(sql);
             return n;
 

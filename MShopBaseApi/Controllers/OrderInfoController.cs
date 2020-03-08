@@ -20,7 +20,7 @@ namespace MShopBaseApi.Controllers
         [HttpGet]
         public List<OrderInfoS> GetOrder(int OrderSid=-1,int OId = -1)
         {
-            string sql = $"select o.OrderState,o.OrderBH,o.OrderNum,o.OrderTime,g.GPrice,g.GName,p.pfAddres,p.PfName,p.PfPhone,e.ExpCompany,e.ExpInfo from orderinfo as o join goods as g on o.GoodsId=g.`Gid `JOIN express as e ON o.ExpressId =e.ExpressId JOIN profilee p ON o.ProfileeId = p.PfId JOIN userinfo as u ON o.UserId = u.UId WHERE 1=1";
+            string sql = $"select o.OId,o.OrderState,o.OrderBH,o.OrderNum,o.OrderTime,g.GImg1,g.GPrice,g.GName,p.pfAddres,p.PfName,p.PfPhone,e.ExpCompany,e.ExpInfo from orderinfo as o join goods as g on o.GoodsId=g.`Gid `JOIN express as e ON o.ExpressId =e.ExpressId JOIN profilee p ON o.ProfileeId = p.PfId JOIN userinfo as u ON o.UserId = u.UId WHERE 1=1";
             if (OrderSid != -1)
             {
                 sql += $" and OrderState = {OrderSid}";
@@ -97,5 +97,9 @@ namespace MShopBaseApi.Controllers
         /// 物流信息
         /// </summary>
         public string ExpInfo { get; set; }
+        /// <summary>
+        /// 商品图片
+        /// </summary>
+        public string GImg1 { get; set; }
     }
 }

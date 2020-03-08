@@ -20,7 +20,7 @@ namespace MShopBaseApi.Controllers
         [HttpGet]
         public List<ProfileeModel> GetPf(int id = -1, int pid = -1)
         {
-            string sql = string.Format("select PfId,PfName,PfPhone,PfState,UserId  from profilee  join userinfo  on profilee.UserId = userinfo.UId where 1 = 1 ");
+            string sql = string.Format("select PfId,PfName,pfAddres,PfPhone,PfState,UserId  from profilee  join userinfo  on profilee.UserId = userinfo.UId where 1 = 1");
             //判断数据
             if (id != -1)
             {
@@ -53,7 +53,7 @@ namespace MShopBaseApi.Controllers
         [HttpPut]
         public int PutPf(ProfileeModel list)
         {
-            string sql = $"update Profilee set PfName='{list.PfName}',pfAddres='{list.PfAddres}',PfPhone='{list.PfPhone}',PfState='{list.PfState}' where UserId='{list.UserId}'";
+            string sql = $"update Profilee set PfName = '{list.PfName}', pfAddres = '{list.PfAddres}', PfPhone = '{list.PfPhone}', PfState = '{list.PfState}' where 1 = 1  and UserId = '{list.UserId}' and PfId = '{list.PfId}'";
             int n = DBHelper.ExecuteNonQuery(sql);
             return n;
 

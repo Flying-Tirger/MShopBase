@@ -19,9 +19,18 @@ namespace MShopBaseApi.Controllers
         [HttpPost]
         public int Post(UserInfoModel m)
         {
-          
-            string sql = $"insert into userinfo(Uname,usex,uimg) values('{m.Uname}','{m.Usex}','{m.UImg}')";
-            return DBHelper.ExecuteNonQuery(sql);
+
+            string sql = $"insert into userinfo(Uname,usex,uimg,openId) values('{m.Uname}','{m.Usex}','{m.UImg}','{m.openId}')";
+            int n =  DBHelper.ExecuteNonQuery(sql);
+            if (n>0)
+            {
+               int c=   Get(m.openId);
+                return c;
+            }
+            else
+            {
+                return 0;
+            }
         }
         /// <summary>
         /// 显示
@@ -30,10 +39,17 @@ namespace MShopBaseApi.Controllers
         /// <returns></returns>
         [HttpGet]
 
-        public int Get(string Uname)
+        public int Get(string openId)
         {
-            string sql = $"select count(*) from userinfo where Uname ={Uname}";
-            return Convert.ToInt32(DBHelper.ExecuteScalar(sql));
+            string sql = $"select UId from userinfo where openId ='{openId}'";
+            if (DBHelper.ExecuteScalar(sql) != null)
+            {
+                return Convert.ToInt32(DBHelper.ExecuteScalar(sql));
+            }
+           else
+            {
+                return 0;
+            }
         }
     }
 }

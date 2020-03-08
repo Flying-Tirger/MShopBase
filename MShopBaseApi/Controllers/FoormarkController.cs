@@ -29,7 +29,7 @@ namespace MShopBaseApi.Controllers
         [HttpGet]
         public List<FoormarkModel> Get(int id)
         {
-            string sql = $"select FId,GImg,EDate,GoodsId,userInfoId from foormark join goods on foormark.GoodsId = goods.`Gid ` join userinfo on userinfo.UId = foormark.userInfoId where userInfoId = {id}";
+            string sql = $"select FId,GImg1,EDate,GoodsId,userInfoId from foormark join goods on foormark.GoodsId = goods.`Gid ` join userinfo on userinfo.UId = foormark.userInfoId where userInfoId = {id}";
             return DBHelper.GetToList<FoormarkModel>(sql);
         }
 
@@ -64,7 +64,7 @@ namespace MShopBaseApi.Controllers
         /// 商品图片
         /// </summary>
 
-        public string GImg { get; set; }
+        public string GImg1 { get; set; }
 
     }
 }

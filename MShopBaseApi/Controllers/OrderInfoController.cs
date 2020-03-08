@@ -53,7 +53,7 @@ namespace MShopBaseApi.Controllers
         public int DelOrder(int oid) {
             string sql = $"delete from orderinfo where orderinfo.OId='{oid}' ";
             int n = DBHelper.ExecuteNonQuery(sql);
-            return n;
+            return n; 
         }
 
     }

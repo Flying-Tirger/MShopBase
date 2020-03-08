@@ -112,6 +112,8 @@ namespace MShopBaseApi.Controllers
         /// 物流Id
         /// </summary>
         public int ExpressId { get; set; }
+        /// 商品图片
+        /// </summary>
         public string GImg1 { get; set; }
     }
 }

@@ -18,14 +18,14 @@ namespace MShopBaseApi.Controllers
         /// <param name="OrderSid"></param>
         /// <returns></returns>
         [HttpGet]
-        public List<OrderInfoS> GetOrder(int OrderSid=-1,int OId = -1)
+        public List<OrderInfoS> GetOrder(int OrderSid=-1,int OId = 0)
         {
-            string sql = $"select o.OrderState,o.OrderBH,o.OrderNum,o.OrderTime,g.GPrice,g.GName,p.pfAddres,p.PfName,p.PfPhone,e.ExpCompany,e.ExpInfo from orderinfo as o join goods as g on o.GoodsId=g.`Gid `JOIN express as e ON o.ExpressId =e.ExpressId JOIN profilee p ON o.ProfileeId = p.PfId JOIN userinfo as u ON o.UserId = u.UId WHERE 1=1";
+            string sql = $"select g.GImg1,o.OId, o.OrderState,o.OrderBH,o.OrderNum,o.OrderTime,g.GPrice,g.GName,p.pfAddres,p.PfName,p.PfPhone,e.ExpCompany,e.ExpInfo,e.ExpressId from orderinfo as o join goods as g on o.GoodsId=g.Gid JOIN express as e ON o.ExpressId =e.ExpressId JOIN profilee p ON o.ProfileeId = p.PfId JOIN userinfo as u ON o.UserId = u.UId WHERE 1=1";
             if (OrderSid != -1)
             {
                 sql += $" and OrderState = {OrderSid}";
             }
-            if (OId != -1)
+            if (OId != 0)
             {
                 sql += $" and OId = {OId}";
             }
@@ -44,8 +44,19 @@ namespace MShopBaseApi.Controllers
             int n = DBHelper.ExecuteNonQuery(sql);
             return n; 
         }
+        public int PutOrder(int Oid)
+        {
+            string sql = $"update orderinfo set orderinfo.OrderState = 3 where orderinfo.OId='{Oid}'";
+            int n = DBHelper.ExecuteNonQuery(sql);
+            return n;
+        }
+        public int DelOrder(int oid) {
+            string sql = $"delete from orderinfo where orderinfo.OId='{oid}' ";
+            int n = DBHelper.ExecuteNonQuery(sql);
+            return n;
+        }
 
-}
+    }
 
     public class OrderInfoS
     {
@@ -97,5 +108,10 @@ namespace MShopBaseApi.Controllers
         /// 物流信息
         /// </summary>
         public string ExpInfo { get; set; }
+        /// <summary>
+        /// 物流Id
+        /// </summary>
+        public int ExpressId { get; set; }
+        public string GImg1 { get; set; }
     }
 }

@@ -12,12 +12,12 @@ namespace MShopBaseApi.Controllers
     [ApiController]
     public class GoodsTypeController : ControllerBase
     {
-
+        [HttpGet]
         public List<GoodsTypeModel> Getlb(int id = 0)
         {
             try
             {
-                List<GoodsTypeModel> goodtype = new List<GoodsTypeModel>();
+                List<GoodsTypeModel> goodtype = RedisHelper.Get<List<GoodsTypeModel>>("goodtype");
                 string msg = $"GoodsTypeController 进行了类别显示";
                 LogHelper.Logger.Info(msg);
                 if (!RedisHelper.Exist("goodtype"))
@@ -29,7 +29,7 @@ namespace MShopBaseApi.Controllers
                 }
                 if (id != 0)
                 {
-                    goodtype = RedisHelper.Get<List<GoodsTypeModel>>("goodtype").Where(s => s.Typeid.Equals(id)).ToList();
+                    goodtype = goodtype.Where(s => s.Typeid.Equals(id)).ToList();
                 }
                 return goodtype;
             }

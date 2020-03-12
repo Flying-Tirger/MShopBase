@@ -42,7 +42,7 @@ namespace MShopBaseApi.Controllers
                 List<AfterOrderModel> list = DBHelper.GetToList<AfterOrderModel>(sql);
                 return list;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 LogHelper.Logger.Error($"错误GoodsController Get方法 数据为userId={userId} ,Orderid={Orderid},state={state}", ex);
                 throw;
@@ -67,7 +67,7 @@ namespace MShopBaseApi.Controllers
                 int n = DBHelper.ExecuteNonQuery(sql);
                 return n;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 LogHelper.Logger.Error($"错误AfterSaleController Post方法 数据为{after.ToString()}", ex);
                 throw;

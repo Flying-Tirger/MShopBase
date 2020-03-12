@@ -22,18 +22,35 @@ namespace MShopBaseApi.Controllers
         /// <returns></returns>
         public List<GoodsGoodtype> Get(int Lid=0,string Goname=null)
         {
-            string sql = $"SELECT * FROM goods join goodstype on goods.GTypeId=goodstype.GoodsTypeId where 1=1 ";
-            if (Lid!=0)
+            try
             {
-                sql+= $" and goods.GTypeId={Lid} ";
+                List<GoodsGoodtype> good = new List<GoodsGoodtype>();
+                string msg = $"GoodsController 进行了查询操作 条件为Lid={Lid} and Goname={Goname}";
+                LogHelper.Logger.Info(msg);
+                if (!RedisHelper.Exist("good"))
+                {
+                    string sql = $"SELECT * FROM goods ";
+                    RedisHelper.Set<List<GoodsGoodtype>>("good", DBHelper.GetToList<GoodsGoodtype>(sql));
+                    msg = $"GoodsController 向redis存储了数据";
+                    LogHelper.Logger.Info(msg);
+                }
+                if (Lid != 0)
+                {
+                    good = RedisHelper.Get<List<GoodsGoodtype>>("good").Where(s => s.Gid.Equals(Lid)).ToList();
+                }
+                if (Goname != null)
+                {
+                    good.AddRange(RedisHelper.Get<List<GoodsGoodtype>>("good").Where(s => s.GName.Contains(Goname)).ToList());
+                }
+
+                return good;
             }
-            if (Goname!=null)
+            catch (Exception ex)
             {
-                Goname = '"' + Goname + '"';
-                sql += $" and  LOCATE({Goname},goods.GName)";
+                LogHelper.Logger.Error($"错误GoodsController Get方法 数据为Lid={Lid} ,Goname={Goname}", ex);
+                throw;
             }
-            List<GoodsGoodtype> good = DBHelper.GetToList<GoodsGoodtype>(sql);
-            return good;
+            
         }
         public class GoodsGoodtype
         {

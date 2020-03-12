@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using log4net;
+using log4net.Config;
+using log4net.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -18,8 +22,13 @@ namespace MShopBaseApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-        }
 
+            repository = LogManager.CreateRepository("AprilLog");
+
+            XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));//配置文件路径可以自定义
+            BasicConfigurator.Configure(repository);
+        }
+        public static ILoggerRepository repository { get; set; }
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -47,6 +56,7 @@ namespace MShopBaseApi
                endpoints.MapControllers();
               
             });
+            app.UseStaticFiles();
         }
     }
 }

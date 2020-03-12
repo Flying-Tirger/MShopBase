@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MShopBaseApi.Model;
+using Newtonsoft.Json;
+
 namespace MShopBaseApi.Controllers
 {
     [Route("api/[controller]")]
@@ -18,9 +20,9 @@ namespace MShopBaseApi.Controllers
         /// <param name="pid">反填</param>
         /// <returns></returns>
         [HttpGet]
-        public List<ProfileeModel> GetPf(int id = -1, int pid = -1)
+        public List<ProfileeModel> GetPf(int id = -1, int pid = -1,int Trudd=0)
         {
-            string sql = string.Format("select PfId,PfName,pfAddres,PfPhone,PfState,UserId  from profilee  join userinfo  on profilee.UserId = userinfo.UId where 1 = 1");
+            string sql = string.Format("select PfId,PfName,PfAddres,PfPhone,PfState,UserId  from profilee  join userinfo  on profilee.UserId = userinfo.UId where 1 = 1 ");
             //判断数据
             if (id != -1)
             {
@@ -30,6 +32,10 @@ namespace MShopBaseApi.Controllers
             {
                 //反填
                 sql += string.Format("  and   PfId='{0}'", pid);
+            }
+            if (Trudd!=0)
+            {
+                string.Format(" and profilee.PfState=true");
             }
             List<ProfileeModel> list = DBHelper.GetToList<ProfileeModel>(sql);
             return list;
@@ -53,7 +59,8 @@ namespace MShopBaseApi.Controllers
         [HttpPut]
         public int PutPf(ProfileeModel list)
         {
-            string sql = $"update Profilee set PfName = '{list.PfName}', pfAddres = '{list.PfAddres}', PfPhone = '{list.PfPhone}', PfState = '{list.PfState}' where 1 = 1  and UserId = '{list.UserId}' and PfId = '{list.PfId}'";
+
+            string sql = $"update Profilee set PfName='{list.PfName}',pfAddres='{list.PfAddres}',PfPhone='{list.PfPhone}',PfState='{list.PfState}' where  PfId='{list.PfId}' ";
             int n = DBHelper.ExecuteNonQuery(sql);
             return n;
 

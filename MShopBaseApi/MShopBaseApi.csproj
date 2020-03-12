@@ -5,9 +5,161 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
     <PackageReference Include="MySql.Data" Version="8.0.19" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bs02.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bs03.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bspp05.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bx01.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bx02.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bx03.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bx04.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bx05.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bx06.png" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bx07.png" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bx08.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bxpp.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bxpp01.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bxpp02.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Bxpp03.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Ds01.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Ds04.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Ds05.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Ds06.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Ds07.png" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Ds08.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Dspp01.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Dspp02.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Dspp03.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Dspp04.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Kt01.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Kt02.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Kt03.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Kt04.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Kt05.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Kt06.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Kt07.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Kt08.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\Ktpp01.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\u=2554746912,249769376&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\u=3294690078,1982447404&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\大家电\u=3950465573,1400018376&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\15151432285720792.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\15153026524406141.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\15153035096646940.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\15153040763667173.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\15153043617372312.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\15154604578127897.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\15154826741573179.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\15154829397391951.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\15158501041976377.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\15158502428874281.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\15158504251925153.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\15161630448059095.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\15171907025763502.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\15280815754990614.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\手机相机\20167213623746663.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\15159872657351713.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\15159956641413465.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\15174497834304380.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\15174500927535322.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\15174510685974851.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\15174513127224821.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\15174513984520536.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\15238456083881956.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\15239287535034147.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=1202322167,120497371&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=1207751780,3488924282&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=1295995707,2222346593&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=1339660361,2695779306&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=137286573,2577275819&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=137409944,78690321&amp;fm=11&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=146544273,3254571121&amp;fm=11&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=1891531622,3719762318&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=2101405773,1497374838&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=2301726270,1697564320&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=2321575364,2061429351&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=2341607555,3236176203&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=2646836523,3766887848&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=2776009880,2667089050&amp;fm=26&amp;gp=0.jpg.png" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=2779969797,3858321564&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=2867717283,2384267286&amp;fm=26&amp;gp=0.jpg.png" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=3228991433,719008105&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=3343552497,1887761478&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=3411875851,1372397547&amp;fm=191&amp;app=48&amp;size=h300&amp;n=0&amp;g=4n&amp;f=JPEG.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=3439806455,4293142405&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=3463817050,1288401221&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=3764761972,1352684177&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=3843082877,992790987&amp;fm=11&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=3977175689,2293368323&amp;fm=11&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=4151549452,3157528918&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\u=645216519,1560156713&amp;fm=191&amp;app=48&amp;size=h300&amp;n=0&amp;g=4n&amp;f=JPEG.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\untitled.png" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\untitled1.png" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\untitled3.png" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\untitled5.png" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\untitled6.png" />
+    <None Include="wwwroot\Imgs\商品图片\电脑办公\untitled7.png" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15386285983511030.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15386288188319883.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15390541005386808.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15431163052452497.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15431170145030302.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15431177022625257.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15432157979447905.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15433798761228208.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15433805659050337.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15437423308320707.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15437446894686018.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15438040195104871.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15438043371868573.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15438046089156492.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15438048092989454.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15454618863495374.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\15455694972067014.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=103095413,4246000896&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=1427332273,3339980770&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=143035297,1589491334&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=1442826564,3032520592&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=145471072,3867273642&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=1540993672,3349224843&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=1554590444,3792786834&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=1631116095,4262984297&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=1797455814,3780529989&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=2535833915,1356703071&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=2582004666,3873396579&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=2988148077,123838946&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=3062000391,275524681&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=3311908057,1761574022&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=3520548340,2970934864&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=3634495307,809961715&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=3710176872,4131095425&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=3850607882,108528107&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=4048962887,3659001061&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\u=4068191777,3498972110&amp;fm=26&amp;gp=0.jpg" />
+    <None Include="wwwroot\Imgs\商品图片\食品酒水\untitled.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Upload\img\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ServiceStack">
+      <HintPath>E:\专业\实训One\Redis\Redis安装程序\C#引用的Dll\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>E:\专业\实训One\Redis\Redis安装程序\C#引用的Dll\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.ServiceInterface">
+      <HintPath>E:\专业\实训One\Redis\Redis安装程序\C#引用的Dll\ServiceStack.ServiceInterface.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 

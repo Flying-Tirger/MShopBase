@@ -12,15 +12,16 @@ namespace MShopBaseApi.Controllers
     [ApiController]
     public class OrderInfoController : ControllerBase
     {
+       [HttpGet]
+
         /// <summary>
         /// 显示
         /// </summary>
         /// <param name="OrderSid"></param>
         /// <returns></returns>
-        [HttpGet]
         public List<OrderInfoS> GetOrder(int OrderSid=-1,int OId = -1)
         {
-            string sql = $"select o.OId,o.OrderState,o.OrderBH,o.OrderNum,o.OrderTime,g.GImg1,g.GPrice,g.GName,p.pfAddres,p.PfName,p.PfPhone,e.ExpCompany,e.ExpInfo from orderinfo as o join goods as g on o.GoodsId=g.`Gid `JOIN express as e ON o.ExpressId =e.ExpressId JOIN profilee p ON o.ProfileeId = p.PfId JOIN userinfo as u ON o.UserId = u.UId WHERE 1=1";
+            string sql = $"select g.Gid, g.GImg1,o.OId, o.OrderState,o.OrderBH,o.OrderNum,o.OrderTime,g.GPrice,g.GName,p.PfAddres,p.PfName,p.PfPhone,e.ExpCompany,e.ExpInfo,e.ExpressId from orderinfo as o join goods as g on o.GoodsId=g.Gid JOIN express as e ON o.ExpressId =e.ExpressId JOIN profilee p ON o.ProfileeId = p.PfId JOIN userinfo as u ON o.UserId = u.UId WHERE 1=1";
             if (OrderSid != -1)
             {
                 sql += $" and OrderState = {OrderSid}";
@@ -40,12 +41,19 @@ namespace MShopBaseApi.Controllers
         [HttpPost]
         public int PostOrder(OrderInfoModel model)
         {
-            string sql = $"insert into orderinfo VALUES(DEFAULT(orderinfo.OId),'{model.OrderBH}',{model.GoodsId},{model.OrderNum},'{model.OrderTime}',{model.OrderState},{model.ExpressId},{model.ProfileeId},{model.UserId})";
+            string sql = $"insert into orderinfo VALUES(DEFAULT(orderinfo.OId),'{model.OrderBH}',{model.GoodsId},{model.OrderNum},NOW(),{model.OrderState},{model.ExpressId},{model.ProfileeId},{model.UserId})";
             int n = DBHelper.ExecuteNonQuery(sql);
             return n; 
         }
-
+        [HttpDelete]
+        public int DelOrder(int aid)
+        {
+            string sql = $"delete from orderinfo where orderinfo.oid='{aid}'";
+            return DBHelper.ExecuteNonQuery(sql);
+        }
 }
+
+  
 
     public class OrderInfoS
     {

@@ -27,17 +27,15 @@ namespace MShopBaseApi.Controllers
             return n;
         }
         [HttpGet]
-        public List<FoormarkModel> Get(int id)
+        public List<FoortGoods> Get(int id)
         {
-            string sql = $"select FId,GImg1,EDate,GoodsId,userInfoId from foormark join goods on foormark.GoodsId = goods.`Gid ` join userinfo on userinfo.UId = foormark.userInfoId where userInfoId = {id}";
-            return DBHelper.GetToList<FoormarkModel>(sql);
+            string sql = $"select FId,GImg1,EDate,GoodsId,userInfoId from foormark join goods on foormark.GoodsId = goods.`Gid` join userinfo on userinfo.UId = foormark.userInfoId where userInfoId = {id}";
+            return DBHelper.GetToList<FoortGoods>(sql);
         }
-
         [HttpDelete]
-
         public int Delete(string id)
         {
-            string sql = $"delete from foormark where FId in ({id})";
+            string sql = $"delete from foormark where foormark.userInfoId  in ({id})";
             return DBHelper.ExecuteNonQuery(sql);
         }
     }

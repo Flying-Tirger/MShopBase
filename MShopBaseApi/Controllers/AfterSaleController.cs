@@ -25,17 +25,26 @@ namespace MShopBaseApi.Controllers
         /// <returns></returns>
         public List<AfterOrderModel> Get(int userId,int Orderid=0, int state = 0)
         {
-            string sql = $"select g.GImg1,g.GName,o.OrderNum,g.GPrice,o.OId,o.OrderBH,o.OrderTime,a.* from aftersale as a join orderinfo as o on a.AsId=o.OId join  goods  as g on g.`Gid `=o.GoodsId where o.UserId ={userId}";
-            if (state != 0)
+            try
             {
-                sql += $" and AsState={state}";
+                string sql = $"select g.GImg1,g.GName,o.OrderNum,g.GPrice,o.OId,o.OrderBH,o.OrderTime,a.* from aftersale as a join orderinfo as o on a.AsId=o.OId join  goods  as g on g.`Gid`=o.GoodsId where o.UserId ={userId}";
+                if (state != 0)
+                {
+                    sql += $" and AsState={state}";
+                }
+                if (Orderid != 0)
+                {
+                    sql += $" and o.OId={Orderid}";
+                }
+                List<AfterOrderModel> list = DBHelper.GetToList<AfterOrderModel>(sql);
+                return list;
             }
-            if (Orderid!=0)
+            catch (Exception ex)
             {
-                sql += $" and o.OId={Orderid}";
+
+                throw;
             }
-            List<AfterOrderModel> list = DBHelper.GetToList<AfterOrderModel>(sql);
-            return list;
+
         }
         [HttpPost]
         /// <summary>
@@ -43,11 +52,21 @@ namespace MShopBaseApi.Controllers
         /// </summary>
         /// <param name="after"></param>
         /// <returns></returns>
-        public int Post(AfterSaleModel after = null)
+        public int Post(AfterSaleModel after)
         {
-            string sql = $"insert into aftersale(AsState,AsRemark,UserId,OrderId,ApplyTime,AsPhone,AsImg) vlaues({after.AsState}, '{ after.AsRemark}  ', {after.UserId}, {after.OrderId}, NOW(), '{after.AsPhone}', '{after.AsImg}')";
-            int n = DBHelper.ExecuteNonQuery(sql);
-            return n;
+            try
+            {
+                after.ApplyTime = DateTime.Now;
+                string sql = $"insert into aftersale(AsState,AsRemark,UserId,OrderId,ApplyTime,AsPhone,AsImg) vlaues({after.AsState}, '{ after.AsRemark}  ', {after.UserId}, {after.OrderId}, NOW(), '{after.AsPhone}', '{after.AsImg}')";
+                int n = DBHelper.ExecuteNonQuery(sql);
+                return n;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
         }
         /// <summary>
         /// 删除售后信息
@@ -57,9 +76,18 @@ namespace MShopBaseApi.Controllers
         [HttpDelete]
         public int Del(int id)
         {
-            string sql = $"delete from aftersale where AsId={id}";
-            int n = DBHelper.ExecuteNonQuery(sql);
-            return n;
+            try
+            {
+                string sql = $"delete from aftersale where AsId={id}";
+                int n = DBHelper.ExecuteNonQuery(sql);
+                return n;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
     }
     /// <summary>

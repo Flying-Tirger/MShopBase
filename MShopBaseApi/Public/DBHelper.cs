@@ -12,7 +12,7 @@ namespace MShopBaseApi
     public class DBHelper
     {
         //连接数据库
-        static MySqlConnection conn = new MySqlConnection("server=111.229.85.21;user id=root;pwd=root;database=mshopbase");
+        static MySqlConnection conn = new MySqlConnection("server=111.229.85.21;user id=root;pwd=root;database=mshopbase;CharSet=utf8;");
         static MySqlDataReader sdr;
         /// <summary>
         /// 获取数据流  查询、显示、绑定下拉

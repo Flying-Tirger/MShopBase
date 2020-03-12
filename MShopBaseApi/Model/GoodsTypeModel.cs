@@ -30,6 +30,7 @@ namespace MShopBaseApi.Model
         /// 类别图片
         /// </summary>
         public string GoodTypeimg { get; set; }
+        public int Typeid { get; set; }
 
     }
 }

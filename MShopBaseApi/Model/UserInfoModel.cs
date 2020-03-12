@@ -25,8 +25,11 @@ namespace MShopBaseApi.Model
         /// <summary>
         /// 头像
         /// </summary>
-
         public string UImg { get; set; }
+        /// <summary>
+        /// 用户唯一标识
+        /// </summary>
+        public string openId { get; set; }
 
     }
 }

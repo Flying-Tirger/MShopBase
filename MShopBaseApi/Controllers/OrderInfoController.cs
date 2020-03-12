@@ -25,27 +25,21 @@ namespace MShopBaseApi.Controllers
         {
             try
             {
-                List<OrderInfoS> order = new List<OrderInfoS>();
                 string msg = $"OrderInfoController 进行了查询操作 条件为OrderSid={OrderSid} and OId={OId}";
                 LogHelper.Logger.Info(msg);
-                if (!RedisHelper.Exist("order"))
-                {
-                    string sql = $"select g.Gid, g.GImg1,o.OId, o.OrderState,o.OrderBH,o.OrderNum,o.OrderTime,g.GPrice,g.GName,p.PfAddres,p.PfName,p.PfPhone,e.ExpCompany,e.ExpInfo,e.ExpressId from orderinfo as o join goods as g on o.GoodsId=g.Gid JOIN express as e ON o.ExpressId =e.ExpressId JOIN profilee p ON o.ProfileeId = p.PfId JOIN userinfo as u ON o.UserId = u.UId ";
-                    RedisHelper.Set<List<OrderInfoS>>("order", DBHelper.GetToList<OrderInfoS>(sql));
-                    msg = $"OrderInfo 向redis存储了数据";
-                    LogHelper.Logger.Info(msg);
-                }
+                    string sql = $"select g.Gid, g.GImg1,o.OId, o.OrderState,o.OrderBH,o.OrderNum,o.OrderTime,g.GPrice,g.GName,p.PfAddres,p.PfName,p.PfPhone,e.ExpCompany,e.ExpInfo,e.ExpressId from orderinfo as o join goods as g on o.GoodsId=g.Gid JOIN express as e ON o.ExpressId =e.ExpressId JOIN profilee p ON o.ProfileeId = p.PfId JOIN userinfo as u ON o.UserId = u.UId where 1=1";
                 
                 if (OrderSid != -1)
                 {
-                    order = RedisHelper.Get<List<OrderInfoS>>("order").Where(s => s.OrderState.Equals(OrderSid)).ToList();
+                    sql += $" and OrderState = {OrderSid}";
                 }
                 if (OId != -1)
                 {
-                    order = RedisHelper.Get<List<OrderInfoS>>("order").Where(s => s.OId.Equals(OId)).ToList();
+                    sql += $" and OId = {OId}";
                 }
-                
-                return order;
+
+                List<OrderInfoS> list = DBHelper.GetToList<OrderInfoS>(sql);
+                return list;
             }
             catch (Exception ex)
             {

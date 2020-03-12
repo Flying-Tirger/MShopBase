@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MShopBaseApi.Model;
+using Newtonsoft.Json;
 
 namespace MShopBaseApi.Controllers
 {
@@ -14,6 +15,7 @@ namespace MShopBaseApi.Controllers
     {
        [HttpGet]
 
+
         /// <summary>
         /// 显示
         /// </summary>
@@ -21,17 +23,35 @@ namespace MShopBaseApi.Controllers
         /// <returns></returns>
         public List<OrderInfoS> GetOrder(int OrderSid=-1,int OId = -1)
         {
-            string sql = $"select g.Gid, g.GImg1,o.OId, o.OrderState,o.OrderBH,o.OrderNum,o.OrderTime,g.GPrice,g.GName,p.PfAddres,p.PfName,p.PfPhone,e.ExpCompany,e.ExpInfo,e.ExpressId from orderinfo as o join goods as g on o.GoodsId=g.Gid JOIN express as e ON o.ExpressId =e.ExpressId JOIN profilee p ON o.ProfileeId = p.PfId JOIN userinfo as u ON o.UserId = u.UId WHERE 1=1";
-            if (OrderSid != -1)
+            try
             {
-                sql += $" and OrderState = {OrderSid}";
+                List<OrderInfoS> order = new List<OrderInfoS>();
+                string msg = $"OrderInfoController 进行了查询操作 条件为OrderSid={OrderSid} and OId={OId}";
+                LogHelper.Logger.Info(msg);
+                if (!RedisHelper.Exist("order"))
+                {
+                    string sql = $"select g.Gid, g.GImg1,o.OId, o.OrderState,o.OrderBH,o.OrderNum,o.OrderTime,g.GPrice,g.GName,p.PfAddres,p.PfName,p.PfPhone,e.ExpCompany,e.ExpInfo,e.ExpressId from orderinfo as o join goods as g on o.GoodsId=g.Gid JOIN express as e ON o.ExpressId =e.ExpressId JOIN profilee p ON o.ProfileeId = p.PfId JOIN userinfo as u ON o.UserId = u.UId ";
+                    RedisHelper.Set<List<OrderInfoS>>("order", DBHelper.GetToList<OrderInfoS>(sql));
+                    msg = $"OrderInfo 向redis存储了数据";
+                    LogHelper.Logger.Info(msg);
+                }
+                
+                if (OrderSid != -1)
+                {
+                    order = RedisHelper.Get<List<OrderInfoS>>("order").Where(s => s.OrderState.Equals(OrderSid)).ToList();
+                }
+                if (OId != -1)
+                {
+                    order = RedisHelper.Get<List<OrderInfoS>>("order").Where(s => s.OId.Equals(OId)).ToList();
+                }
+                
+                return order;
             }
-            if (OId != -1)
+            catch (Exception ex)
             {
-                sql += $" and OId = {OId}";
+                LogHelper.Logger.Error($"错误OrderInfoController Get方法 OrderSid={OrderSid} ,OId={OId}", ex);
+                throw;
             }
-            List<OrderInfoS> list = DBHelper.GetToList<OrderInfoS>(sql);
-            return list;
         }   
         /// <summary>
         /// 添加
@@ -41,15 +61,40 @@ namespace MShopBaseApi.Controllers
         [HttpPost]
         public int PostOrder(OrderInfoModel model)
         {
-            string sql = $"insert into orderinfo VALUES(DEFAULT(orderinfo.OId),'{model.OrderBH}',{model.GoodsId},{model.OrderNum},NOW(),{model.OrderState},{model.ExpressId},{model.ProfileeId},{model.UserId})";
-            int n = DBHelper.ExecuteNonQuery(sql);
-            return n; 
+            try
+            {
+                string sql = $"insert into orderinfo VALUES(DEFAULT(orderinfo.OId),'{model.OrderBH}',{model.GoodsId},{model.OrderNum},NOW(),{model.OrderState},{model.ExpressId},{model.ProfileeId},{model.UserId})";
+                int n = DBHelper.ExecuteNonQuery(sql);
+                string ordera = $"OrderInfoController 进行添加添加数据为{JsonConvert.SerializeObject(model)}  添加了{n}条数据";
+                LogHelper.Logger.Info(ordera);
+                return n;
+            }
+            
+            catch (Exception ex)
+            {
+                LogHelper.Logger.Error($"错误OrderInfoController Post方法 数据为{model.ToString()}", ex);
+                throw;
+            }
         }
         [HttpDelete]
         public int DelOrder(int aid)
         {
-            string sql = $"delete from orderinfo where orderinfo.oid='{aid}'";
-            return DBHelper.ExecuteNonQuery(sql);
+
+            try
+            {
+                string sql = $"delete from orderinfo where orderinfo.oid='{aid}'";
+                int n = DBHelper.ExecuteNonQuery(sql);
+                string orders = $"OrderInfoController 进行了删除数据 条件为oid={aid}";
+                LogHelper.Logger.Info(orders);
+                return n;
+            }
+
+            catch (Exception ex)
+            {
+                LogHelper.Logger.Error($"错误OrderInfoController Delete方法 oid={aid}", ex);
+                throw;
+            }
+            
         }
 }
 

@@ -29,7 +29,7 @@ namespace MShopBaseApi.Model
         /// <summary>
         /// 类别图片
         /// </summary>
-        public string GoodsTypeImg { get; set; }
+        public string GoodTypeimg { get; set; }
 
     }
 }

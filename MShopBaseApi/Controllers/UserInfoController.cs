@@ -54,7 +54,7 @@ namespace MShopBaseApi.Controllers
         /// <returns></returns>
         [HttpGet]
 
-        public int Get(string openId)
+        public int Get(string Uname)
         {
             try
             {

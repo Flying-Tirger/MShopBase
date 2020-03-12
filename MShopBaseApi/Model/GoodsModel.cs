@@ -24,17 +24,9 @@ namespace MShopBaseApi.Model
         /// </summary>
         public decimal GPrice { get; set; }
         /// <summary>
-        /// 商品图片1
+        /// 商品图片
         /// </summary>
-        public string GImg1 { get; set; }
-        /// <summary>
-        /// 商品图片2
-        /// </summary>
-        public string GImg2 { get; set; }
-        /// <summary>
-        /// 商品图片3
-        /// </summary>
-        public string GImg3 { get; set; }
+        public string GImg { get; set; }
         /// <summary>
         /// 商品评分
         /// </summary>
@@ -47,18 +39,6 @@ namespace MShopBaseApi.Model
         /// 外键 商品类别
         /// </summary>
         public int GTypeId { get; set; }
-        /// <summary>
-        /// 商品运费
-        /// </summary>
-        public decimal GYunfei { get; set; }
-        /// <summary>
-        /// 商品库存
-        /// </summary>
-        public int GKucun { get; set; }
-        /// <summary>
-        /// 商品简介
-        /// </summary>
-        public string GSxiang { get; set; }
 
     }
 }

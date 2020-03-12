@@ -35,7 +35,7 @@ namespace MShopBaseApi.Controllers
         [HttpDelete]
         public int Delete(string id)
         {
-            string sql = $"delete from foormark where foormark.userInfoId  in ({id})";
+            string sql = $"delete from foormark where FId in ({id})";
             return DBHelper.ExecuteNonQuery(sql);
         }
     }

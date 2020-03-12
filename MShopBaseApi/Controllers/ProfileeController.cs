@@ -48,9 +48,18 @@ namespace MShopBaseApi.Controllers
         /// <returns>然后传入到sql里进行添加</returns>
         // POST: api/Profilee
         [HttpPost]
-        public int PostPf(ProfileeModel list)
+        public int PostPf(ProfileeModel list,bool zhuang,int uid,int tid )
         {
+            zhuang = list.PfState;
+            uid = list.UserId;
+            tid = list.PfId;
             string sql = $"insert into Profilee(PfName,pfAddres,PfPhone,PfState,UserId) values('{list.PfName}','{list.PfAddres}','{list.PfPhone}',{list.PfState},'{list.UserId}')";
+            
+            if (zhuang== true)
+            {
+                string sql1 = $"update Profilee set PfState = false  WHERE PfId!={tid} and UserId = {uid} ";
+                DBHelper.ExecuteNonQuery(sql1);
+            }
             int n = DBHelper.ExecuteNonQuery(sql);
             return n;
         }

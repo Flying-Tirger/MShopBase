@@ -23,10 +23,13 @@ namespace MShopBaseApi.Controllers
         /// <param name="Orderid"></param>
         /// <param name="state"></param>
         /// <returns></returns>
-        public List<AfterOrderModel> Get(int userId,int Orderid=0, int state = 0)
+        public List<AfterOrderModel> Get(int userId, int Orderid = 0, int state = 0)
         {
             try
             {
+                string msg = $"AfterSaleController 进行了查询操作 条件为userId={userId} and Orderid={Orderid},state={state}";
+                LogHelper.Logger.Info(msg);
+
                 string sql = $"select g.GImg1,g.GName,o.OrderNum,g.GPrice,o.OId,o.OrderBH,o.OrderTime,a.* from aftersale as a join orderinfo as o on a.AsId=o.OId join  goods  as g on g.`Gid`=o.GoodsId where o.UserId ={userId}";
                 if (state != 0)
                 {
@@ -41,7 +44,7 @@ namespace MShopBaseApi.Controllers
             }
             catch (Exception)
             {
-
+                LogHelper.Logger.Error($"错误GoodsController Get方法 数据为userId={userId} ,Orderid={Orderid},state={state}", ex);
                 throw;
             }
 
@@ -56,14 +59,17 @@ namespace MShopBaseApi.Controllers
         {
             try
             {
+
                 after.ApplyTime = DateTime.Now;
+                string msg = $"AfterSaleController 进行了添加操作 数据为{after.ToString()}";
+                LogHelper.Logger.Info(msg);
                 string sql = $"insert into aftersale(AsState,AsRemark,UserId,OrderId,ApplyTime,AsPhone,AsImg) vlaues({after.AsState}, '{ after.AsRemark}  ', {after.UserId}, {after.OrderId}, NOW(), '{after.AsPhone}', '{after.AsImg}')";
                 int n = DBHelper.ExecuteNonQuery(sql);
                 return n;
             }
             catch (Exception)
             {
-
+                LogHelper.Logger.Error($"错误AfterSaleController Post方法 数据为{after.ToString()}", ex);
                 throw;
             }
 

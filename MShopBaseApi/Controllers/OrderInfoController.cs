@@ -112,5 +112,9 @@ namespace MShopBaseApi.Controllers
         /// 商品图片
         /// </summary>
         public string GImg1 { get; set; }
+        /// <summary>
+        /// 商品Id
+        /// </summary>
+        public int Gid { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace MShopBaseApi.Controllers
                 if (OrderSid != -1)
                 {
                     sql += $" and OrderState = {OrderSid}"; 
-                }
+                } 
                 if (OId != -1)
                 {
                     sql += $" and OId = {OId}";

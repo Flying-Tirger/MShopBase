@@ -39,7 +39,7 @@ namespace MShopBaseApi.Controllers
                 List<AfterOrderModel> list = DBHelper.GetToList<AfterOrderModel>(sql);
                 return list;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;
@@ -61,7 +61,7 @@ namespace MShopBaseApi.Controllers
                 int n = DBHelper.ExecuteNonQuery(sql);
                 return n;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;

@@ -244,7 +244,7 @@ namespace MShopBaseApi
         {
             try
             {
-                Redis.Set<T>(key, t, DateTime.Now.AddHours(12));
+                Redis.Set<T>(key, t, DateTime.Now.AddHours(24));
                 Save();
             }
             catch

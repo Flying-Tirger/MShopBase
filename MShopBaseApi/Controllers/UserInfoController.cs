@@ -40,7 +40,7 @@ namespace MShopBaseApi.Controllers
             }
             catch (Exception ex)
             {
-                string mes = $"UserInfoController";
+                string mes = $"错误UserInfoController 添加时错误 添加数据为{JsonConvert.SerializeObject(m)} ";
                 LogHelper.Logger.Error(mes,ex);
                 throw;
             }

@@ -37,6 +37,7 @@ namespace MShopBaseApi.Controllers
                 if (Lid != 0)
                 {
                     good = RedisHelper.Get<List<GoodsGoodtype>>("good").Where(s => s.Gid.Equals(Lid)).ToList();
+                    
                 }
                 if (Goname != null)
                 {

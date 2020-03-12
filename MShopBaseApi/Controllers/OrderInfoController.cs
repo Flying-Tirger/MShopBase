@@ -30,7 +30,7 @@ namespace MShopBaseApi.Controllers
                     string sql = $"select g.Gid, g.GImg1,o.OId, o.OrderState,o.OrderBH,o.OrderNum,o.OrderTime,g.GPrice,g.GName,p.PfAddres,p.PfName,p.PfPhone,e.ExpCompany,e.ExpInfo,e.ExpressId from orderinfo as o join goods as g on o.GoodsId=g.Gid JOIN express as e ON o.ExpressId =e.ExpressId JOIN profilee p ON o.ProfileeId = p.PfId JOIN userinfo as u ON o.UserId = u.UId where 1=1";     
                 if (OrderSid != -1)
                 {
-                    sql += $" and OrderState = {OrderSid}";
+                    sql += $" and OrderState = {OrderSid}"; 
                 }
                 if (OId != -1)
                 {

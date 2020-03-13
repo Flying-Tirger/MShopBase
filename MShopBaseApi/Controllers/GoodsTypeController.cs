@@ -22,7 +22,7 @@ namespace MShopBaseApi.Controllers
                 LogHelper.Logger.Info(msg);
                 if (!RedisHelper.Exist("goodtype"))
                 {
-                    string sql = $"SELECT a.GoodsTypeId,a.GoodTypeName,b.GoodsTypeId as Typeid,b.GoodTypeName as Ername FROM goodstype a LEFT JOIN goodstype b ON b.GoodsTypeId = a.GoodsTypePid";
+                    string sql = $"SELECT a.GoodsTypeId,a.GoodTypeName,b.GoodsTypeId as Typeid,b.GoodTypeName as Ername,a.GoodsTypeImg FROM goodstype a LEFT JOIN goodstype b ON b.GoodsTypeId = a.GoodsTypePid";
                     RedisHelper.Set<List<GoodsTypeModel>>("goodtype", DBHelper.GetToList<GoodsTypeModel>(sql));
                     msg = $"GoodsTypeController 向redis存储了数据";
                     LogHelper.Logger.Info(msg);

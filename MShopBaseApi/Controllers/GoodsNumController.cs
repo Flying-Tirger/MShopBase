@@ -14,8 +14,27 @@ namespace MShopBaseApi.Controllers
         [HttpGet]
         public List<GoodsNum> Get(string GName)
         {
-            string sql = $"SELECT GName FROM GOODS where Gname like '%{GName}%'";
-            return DBHelper.GetToList<GoodsNum>(sql);
+            try
+            {
+                List<GoodsNum> list = new List<GoodsNum>();
+                string msg = $"GoodsNumController 进行了查询 数据为 GName={GName}";
+                LogHelper.Logger.Info(msg);
+                if (RedisHelper.Exist("GoodsNum"))
+                {
+                    string sql = $"SELECT GName FROM GOODS";
+                    RedisHelper.Set<List<GoodsNum>>("GoodsNum", DBHelper.GetToList<GoodsNum>(sql));
+                    msg = $"GoodsNumController 进行了对redis中GoodsNum 数据机芯更新";
+                    LogHelper.Logger.Info(msg);
+                }
+                return list.Where(s => s.GName.Contains(GName)).Take(10).ToList();
+            }
+            catch (Exception ex)
+            {
+                string msg = $"错误GoodsNumController 进行了查询 数据为 GName={GName}";
+                LogHelper.Logger.Info(msg,ex);
+                throw;
+            }      
+
         }
     }
     public class GoodsNum

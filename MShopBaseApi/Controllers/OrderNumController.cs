@@ -14,8 +14,20 @@ namespace MShopBaseApi.Controllers
         [HttpGet]
         public OrderNum GetOrder(int UserId)
         {
-            string sql = $"select count(IF(orderstate!=-1,true,null)) as AllNum,count(IF(orderstate=1,true,null)) as OneNum,count(IF(orderstate=2,true,null)) as TwoNum,count(IF(orderstate=3,true,null)) as ThreeNum from orderinfo  where UserId = { UserId } ";
-            return DBHelper.GetToList<OrderNum>(sql).FirstOrDefault();
+            try
+            {
+                string msg = $"OrderNumController 进行了查询操作 数据为 UserId={UserId}";
+                LogHelper.Logger.Info(msg);
+                string sql = $"select count(IF(orderstate!=-1,true,null)) as AllNum,count(IF(orderstate=1,true,null)) as OneNum,count(IF(orderstate=2,true,null)) as TwoNum,count(IF(orderstate=3,true,null)) as ThreeNum from orderinfo  where UserId = { UserId } ";
+                return DBHelper.GetToList<OrderNum>(sql).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                string msg = $"错误OrderNumController 进行了查询操作 数据为 UserId={UserId}";
+                LogHelper.Logger.Info(msg,ex);
+                throw;
+            }
+
         }
     }
     public class OrderNum

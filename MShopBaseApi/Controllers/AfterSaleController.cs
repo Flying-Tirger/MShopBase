@@ -84,13 +84,16 @@ namespace MShopBaseApi.Controllers
         {
             try
             {
+                string msg = $"AfterSaleController 进行了删除操作 数据为{id}";
+                LogHelper.Logger.Info(msg);
                 string sql = $"delete from aftersale where AsId={id}";
                 int n = DBHelper.ExecuteNonQuery(sql);
                 return n;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                string msg = $"错误AfterSaleController 进行了删除操作 数据为{id}";
+                LogHelper.Logger.Error(msg,ex);
                 throw;
             }
 

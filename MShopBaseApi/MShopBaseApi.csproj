@@ -8,7 +8,6 @@
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
     <PackageReference Include="MySql.Data" Version="8.0.19" />
-    <PackageReference Include="ServiceStack.Redis" Version="5.8.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
   </ItemGroup>
 
@@ -148,6 +147,18 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Upload\img\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ServiceStack">
+      <HintPath>E:\专业\实训One\Redis\Redis安装程序\C#引用的Dll\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>E:\专业\实训One\Redis\Redis安装程序\C#引用的Dll\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.ServiceInterface">
+      <HintPath>E:\专业\实训One\Redis\Redis安装程序\C#引用的Dll\ServiceStack.ServiceInterface.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 
